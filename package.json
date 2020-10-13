@@ -1,0 +1,30 @@
+{
+  "name": "Micro-front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "rollup -c",
+    "watch": "SERVE=true rollup -c -w"
+  },
+  "browserslist": [
+    "ie >=11",
+    "last 10 Safari major versions",
+    "last 10 Chrome major versions",
+    "last 10 Firefox major versions",
+    "> 1%"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.11.5",
+    "rollup": "^2.29.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-serve": "^1.0.4"
+  }
+}

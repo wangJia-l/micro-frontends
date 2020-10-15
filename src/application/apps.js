@@ -1,4 +1,5 @@
-import { NOT_LOADED } from "./app.helper";
+import { NOT_LOADED, notSkipped, withoutLoadError, isntLoaded, shouldBeActive } from "./app.helper";
+import { invoke } from "../navigations/invoke";
 
 const APPS = [];
 /**
@@ -13,9 +14,9 @@ export function registerApplication(appName, applicationOrLoadFunction, activity
   if (!appName || typeof appName !== "string") {
     throw new Error("the app name must be a non-empty string");
   }
-  if (getAppNames().indexOf(appName) !== -1) {
-    throw new Error("There is already an app declared with name " + appName);
-  }
+  // if (applicationOrLoadFunction().indexOf(appName) !== -1) {
+  //   throw new Error("There is already an app declared with name " + appName);
+  // }
   if (typeof customProps !== "object" || Array.isArray(customProps)) {
     throw new Error("the customProps must be a pure object");
   }
@@ -41,4 +42,17 @@ export function registerApplication(appName, applicationOrLoadFunction, activity
     status: NOT_LOADED,
     services: {},
   });
+  invoke();
+}
+
+/**
+ * 获取满足加载条件的app
+ * 1、没有加载中断
+ * 2、没有加载错误
+ * 3、没有被加载过
+ * 4、满足app.activityWhen()
+ * @return {*[]}
+ */
+export function getAppsToLoad() {
+  return APPS.filter(notSkipped).filter(withoutLoadError).filter(isntLoaded).filter(shouldBeActive);
 }

@@ -1,2 +1,2 @@
 export {registerApplication} from './application/apps'
-// export {start} from './start.js'
+export {start} from './start.js'
